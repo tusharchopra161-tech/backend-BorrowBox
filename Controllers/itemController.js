@@ -10,6 +10,7 @@ async function createItem(req,res){
              description:itemdata.description,
              images:itemdata.images,
              owner:itemdata.owner,
+             location:itemdata.location
          });
 
          if(createItem!==null){
@@ -26,4 +27,31 @@ async function createItem(req,res){
 }
 
 
-module.exports={createItem};
+async function showallitem(req,res){
+    try{
+        const allitems=await Item.find({isavailable:true}).populate("users","-password");
+
+         if(allitems.length===0){
+            res.status(200).json({success:true,message:"No Items available to borrow"});
+         }
+         else{
+            res.status(200).json({success:true,message:"Items are given based on availability",Items:allitems});
+         }
+    }
+    catch(error){
+         res.status(500).json({success:false,message:"Internal server error"});
+        console.log(error);
+    }
+}
+
+// async function searchbycategory(req,res){
+//     try{
+//          const data=req.body;
+
+//     }
+//     catch(error){
+//         console.log(error);
+//     }
+// }
+
+module.exports={createItem,showallitem};

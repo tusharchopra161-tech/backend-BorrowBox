@@ -2,9 +2,10 @@ const express=require("express");
 
 const router=express.Router();
 
-const {createItem}=require("../Controllers/itemController");
+const {createItem,showallitem}=require("../Controllers/itemController");
 
 router.post("/listitem",createItem);
+router.get("/showallitems",showallitem);
 
 
 

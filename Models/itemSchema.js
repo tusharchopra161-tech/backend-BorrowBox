@@ -25,6 +25,10 @@ const itemSchema=new mongoose.Schema({
     isavailable:{
         type:Boolean,
         default:true,
+    },
+    location:{
+        type:"String",
+        required:true
     }
 })
 
