@@ -10,17 +10,18 @@ const cors=require("cors");
 const {connectDB}=require("./config/connectDB");
 
 const userRoutes=require("./routes/userRoute");
+const itemRoutes=require("./routes/itemRoute");
 
 connectDB();
 
-
+const allowedOrigins=["localhost:5173","localhost:5174",]
 app.use(express.json());
-app.use(cors());
-app.use("/api",userRoutes);
+app.use(cors({
+    origin:allowedOrigins,
+    credentials:true
+}));
+app.use("/api",userRoutes,itemRoutes);
 
-app.get("/",(req,res)=>{
-      res.json({success:true,message:"Hello"});
-})
 
 app.listen(port,()=>{
     console.log(`server is listen at ${port}`)

@@ -35,7 +35,12 @@ async function login(req,res){
 
          if(checkuseremail!==null){
                if(checkuseremail.password===data.password){
-                res.status(200).json({success:true,message:"User found successfully",Userdetail:chechuseremail});
+                res.status(200).json({success:true,message:"User found successfully",Userdetail:{
+                    _id:checkuseremail._id,
+                    fullname:checkuseremail.fullname,
+                    email:checkuseremail.email,
+                    role:checkuseremail.role
+                }});
                }
                else{
                   res.status(404).json({success:true,message:"Incorrect password"});
