@@ -33,16 +33,21 @@ async function login(req,res){
 
          const checkuseremail=await User.findOne({email:data.email});
 
-        //  if(checkuseremail!==null){
-        //        if(data)
-        //  }
-        //  else{
-        //     res.status(404).json({success:"false",message:"No user with similar email found"});
-        //  }
+         if(checkuseremail!==null){
+               if(checkuseremail.password===data.password){
+                res.status(200).json({success:true,message:"User found successfully",Userdetail:chechuseremail});
+               }
+               else{
+                  res.status(404).json({success:true,message:"Incorrect password"});
+               }
+         }
+         else{
+            res.status(404).json({success:false,message:"No user with similar email found"});
+         }
     }
     catch(error){
         console.log(error);
     }
 }
 
-module.exports={createUser};
+module.exports={createUser,login};
