@@ -77,9 +77,23 @@ async function changebookingstatus(req,res){
     try{
            const data=req.body;
 
-         //  const updatedbooking=await 
+           const updatedbooking=await Booking.findByIdAndUpdate(
+               data._id,{
+                   status:data.status
+               },{
+                new:true
+               }
+           )
+
+           if(updatedbooking===null){
+            res.status(400).json({success:false,Message:"Unable to change status"});
+           }
+           else{
+               res.status(200).json({success:true,Message:"Change status successfully",newbooking:updatedbooking});
+           }
     }
     catch(error){
+         res.status(500).json({success:false,Message:"Internal server error"});
         console.log(error);
     }
 }
