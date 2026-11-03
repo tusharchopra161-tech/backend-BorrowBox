@@ -4,9 +4,16 @@ const dotenv=require("dotenv")
 dotenv.config()
 const port=process.env.PORT;
 
-app.get("/",(req,res)=>{
-    res.send("chal ra he")
-})
+const {connectDB}=require("./config/connectDB");
+
+const userRoutes=require("./routes/userRoute");
+
+connectDB();
+
+
+app.use(express.json());
+app.use("/api",userRoutes);
+
 app.listen(port,()=>{
-    console.log(`server is leten at ${port}`)
+    console.log(`server is listen at ${port}`)
 })
