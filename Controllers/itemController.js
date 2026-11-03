@@ -30,7 +30,7 @@ async function createItem(req,res){
 
 async function showallitem(req,res){
     try{
-        const allitems=await Item.find({isavailable:true}).populate("users","-password");
+        const allitems=await Item.find({isavailable:true});
 
          if(allitems.length===0){
             res.status(200).json({success:true,message:"No Items available to borrow"});
