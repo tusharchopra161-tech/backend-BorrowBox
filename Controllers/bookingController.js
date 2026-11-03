@@ -99,4 +99,4 @@ async function changebookingstatus(req,res){
 }
 
 
-module.exports={createBooking,showallbookingreq,showallbookings};
+module.exports={createBooking,showallbookingreq,showallbookings,changebookingstatus};
