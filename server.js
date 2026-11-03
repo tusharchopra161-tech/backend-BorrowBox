@@ -11,6 +11,7 @@ const {connectDB}=require("./config/connectDB");
 
 const userRoutes=require("./routes/userRoute");
 const itemRoutes=require("./routes/itemRoute");
+const bookingRoutes=require("./routes/bookingRoute");
 
 connectDB();
 
@@ -20,9 +21,11 @@ app.use(cors({
     origin:allowedOrigins,
     credentials:true
 }));
-app.use("/api",userRoutes,itemRoutes);
+app.use("/api",userRoutes,itemRoutes,bookingRoutes);
 
 
-app.listen(port,()=>{
-    console.log(`server is listen at ${port}`)
+app.listen(port,(error)=>{
+       if(!error){
+         console.log(`server is listen at ${port}`)
+       }
 })

@@ -1,4 +1,5 @@
 const Item=require("../Models/itemSchema");
+const User=require("../Models/userSchema");
 
 async function createItem(req,res){
     try{
@@ -9,7 +10,7 @@ async function createItem(req,res){
              category:itemdata.category,
              description:itemdata.description,
              images:itemdata.images,
-             owner:itemdata.owner,
+             owner:itemdata.ownerid,
              location:itemdata.location
          });
 
