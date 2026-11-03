@@ -27,4 +27,22 @@ async function createUser(req,res){
     }
 }
 
+async function login(req,res){
+    try{
+         const data=req.body;
+
+         const checkuseremail=await User.findOne({email:data.email});
+
+        //  if(checkuseremail!==null){
+        //        if(data)
+        //  }
+        //  else{
+        //     res.status(404).json({success:"false",message:"No user with similar email found"});
+        //  }
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
 module.exports={createUser};

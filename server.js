@@ -4,6 +4,9 @@ const dotenv=require("dotenv")
 dotenv.config()
 const port=process.env.PORT;
 
+
+const cors=require("cors");
+
 const {connectDB}=require("./config/connectDB");
 
 const userRoutes=require("./routes/userRoute");
@@ -12,7 +15,12 @@ connectDB();
 
 
 app.use(express.json());
+app.use(cors());
 app.use("/api",userRoutes);
+
+app.get("/",(req,res)=>{
+      res.json({success:true,message:"Hello"});
+})
 
 app.listen(port,()=>{
     console.log(`server is listen at ${port}`)
